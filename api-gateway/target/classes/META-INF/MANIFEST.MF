@@ -4,7 +4,7 @@ Build-Jdk: 11.0.17
 Implementation-Title: api-gateway
 Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.jacekg.teamfinder
-Implementation-URL: https://spring.io/projects/spring-boot/library-micro
- services/api-gateway
+Implementation-URL: https://spring.io/projects/spring-boot/teamfinder-mi
+ croservices/api-gateway
 Created-By: Maven Integration for Eclipse
 

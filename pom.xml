@@ -5,18 +5,18 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.7</version>
+		<version>2.7.9</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>com.jacekg.teamfinder</groupId>
-	<artifactId>library-microservices</artifactId>
+	<artifactId>teamfinder-microservices</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
 		<module>api-gateway</module>
-		<module>discovery-service</module>
+		<module>discovery-server</module>
 		<module>event-core-service</module>
 		<module>user-service</module>
 		<module>event-serivce</module>
