@@ -13,9 +13,10 @@
 	<artifactId>library-microservices</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<modules>
 		<module>api-gateway</module>
+		<module>discovery-service</module>
 	</modules>
 
 	<properties>

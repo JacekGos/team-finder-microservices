@@ -7,9 +7,9 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>api-gateway</artifactId>
+  <artifactId>discovery-service</artifactId>
 
-  <name>api-gateway</name>
+  <name>discovery-service</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
