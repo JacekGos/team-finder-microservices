@@ -21,6 +21,7 @@
 		<module>user-service</module>
 		<module>event-serivce</module>
 		<module>venue-service</module>
+		<module>user-chat-service</module>
 	</modules>
 
 	<properties>
