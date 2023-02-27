@@ -17,6 +17,7 @@
 	<modules>
 		<module>api-gateway</module>
 		<module>discovery-service</module>
+		<module>event-core-service</module>
 	</modules>
 
 	<properties>
