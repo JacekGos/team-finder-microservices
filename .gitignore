@@ -33,6 +33,7 @@ target/
 .sts4-cache
 
 discovery-service/.classpath
+api-gateway/.classpath
 
 .metadata
 bin/
