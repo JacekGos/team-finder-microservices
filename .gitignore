@@ -33,6 +33,19 @@ target/
 .sts4-cache
 
 discovery-service/.classpath
+api-gateway/.classpath
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 
 
 
