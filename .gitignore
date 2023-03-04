@@ -34,5 +34,17 @@ target/
 
 discovery-service/.classpath
 
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
 
 
