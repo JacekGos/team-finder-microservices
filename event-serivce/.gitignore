@@ -1,2 +1,10 @@
 /target/
 .classpath
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.settings/
+>>>>>>> 4754e75 (Updated projects gitignore file)
+=======
+.settings/
+>>>>>>> 4754e759352d24dea50088f27cea6b756bf09e91
