@@ -10,14 +10,14 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Entity
-@DiscriminatorValue("footballEvent")
+@DiscriminatorValue("bicycleEvent")
 @NoArgsConstructor
-public class FootballEvent extends Event {
+public class BicycleEvent extends Event {
 
 	@Builder
-	public FootballEvent(String name, String activityType, LocalDateTime date, float price, long venueId,
+	public BicycleEvent(String name, String activityType, LocalDateTime date, float price, long venueId,
 			long creatorUserId) {
 		super(name, activityType, date, price, venueId, creatorUserId);
-		this.activityType = "FOOTBALL";
+		this.activityType = "BICYCLE";
 	}
 }

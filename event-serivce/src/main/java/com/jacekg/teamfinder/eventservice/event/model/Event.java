@@ -6,17 +6,20 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +32,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "events")
+@DiscriminatorColumn(name = "event_type")
 public abstract class Event {
 	
 	@Id
@@ -39,7 +43,7 @@ public abstract class Event {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@Column(name = "activityType", nullable = false)
+	@Column(name = "activity_type", nullable = false)
 	protected String activityType;
 	
 	@Column(name = "date", nullable = false)
@@ -48,10 +52,10 @@ public abstract class Event {
 	@Column(name = "price", nullable = false)
 	private float price;
 	
-	@Column(name = "venueId", nullable = false)
+	@Column(name = "venue_id", nullable = false)
 	private long venueId;
 	
-	@Column(name = "creatorUserId", nullable = false)
+	@Column(name = "creator_user_id", nullable = false)
 	private long creatorUserId;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -66,6 +70,4 @@ public abstract class Event {
 		this.venueId = venueId;
 		this.creatorUserId = creatorUserId;
 	}
-	
-	
 }

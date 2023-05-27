@@ -8,6 +8,7 @@ import static org.springframework.http.ResponseEntity.status;
 
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ import lombok.AllArgsConstructor;
 public class EventRestController {
 	
 	private EventService eventService;
-	
+		
 	public EventRestController(EventService eventService) {
 		this.eventService = eventService;
 	}
@@ -32,6 +33,5 @@ public class EventRestController {
 	public ResponseEntity<List<Event>> getAllEvents() {
 		
 		return status(HttpStatus.SC_OK).body(eventService.getAllEvents());
-
 	}
 }
