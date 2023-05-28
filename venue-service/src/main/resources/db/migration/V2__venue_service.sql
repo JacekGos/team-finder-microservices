@@ -1,0 +1,1 @@
+ALTER TABLE venue_sport_discipline RENAME TO venue_activity_type;

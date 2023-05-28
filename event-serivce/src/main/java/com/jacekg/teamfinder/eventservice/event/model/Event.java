@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,8 +45,9 @@ public abstract class Event {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "activity_type", nullable = false)
-	protected String activityType;
+	protected ActivityType activityType;
 	
 	@Column(name = "date", nullable = false)
 	private LocalDateTime date;
@@ -62,9 +65,8 @@ public abstract class Event {
 	@JoinColumn(name = "event_id")
 	private List<EventUser> usersId = new ArrayList<>();
 
-	public Event(String name, String activityType, LocalDateTime date, float price, Long venueId, Long creatorUserId) {
+	public Event(String name, LocalDateTime date, float price, Long venueId, Long creatorUserId) {
 		this.name = name;
-		this.activityType = activityType;
 		this.date = date;
 		this.price = price;
 		this.venueId = venueId;
