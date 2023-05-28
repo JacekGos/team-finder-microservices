@@ -1,0 +1,6 @@
+ALTER TABLE role ALTER COLUMN name TYPE TEXT;
+
+INSERT INTO role(id, name)
+VALUES
+(1, 'USER'),
+(2, 'ADMIN')
