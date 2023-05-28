@@ -1,4 +1,4 @@
-package com.jacekg.teamfinder.eventservice.event.model;
+package com.jacekg.teamfinder.userservice.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,28 +7,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
-@Entity
-@Table(name = "event_user")
+
+@Getter
+@Setter
 @NoArgsConstructor
-@ToString
-public class EventUser {
+@AllArgsConstructor
+@Entity
+@Table(name = "role")
+public class Role {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 	
-	@Column(name = "user_id")
-	private Long userId;
-	
-	@Column(name = "event_id")
-	private Long eventId;
-	
-	public EventUser(Long userId, Long eventId) {
-		this.userId = userId;
-		this.eventId = eventId;
-	}
+	@Column(name = "name", nullable = false)
+	private String name;
 }

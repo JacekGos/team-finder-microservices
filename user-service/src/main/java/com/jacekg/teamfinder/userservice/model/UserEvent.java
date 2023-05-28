@@ -1,4 +1,4 @@
-package com.jacekg.teamfinder.eventservice.event.model;
+package com.jacekg.teamfinder.userservice.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +10,12 @@ import javax.persistence.Table;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
-@Table(name = "event_user")
+
 @NoArgsConstructor
 @ToString
-public class EventUser {
+@Entity
+@Table(name = "user_event")
+public class UserEvent {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +27,8 @@ public class EventUser {
 	
 	@Column(name = "event_id")
 	private Long eventId;
-	
-	public EventUser(Long userId, Long eventId) {
+
+	public UserEvent(Long userId, Long eventId) {
 		this.userId = userId;
 		this.eventId = eventId;
 	}
