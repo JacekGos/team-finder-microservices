@@ -1,0 +1,1 @@
+ALTER TABLE activity_type ALTER COLUMN name TYPE TEXT;

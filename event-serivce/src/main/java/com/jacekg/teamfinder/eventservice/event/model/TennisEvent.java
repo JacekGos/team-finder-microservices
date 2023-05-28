@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 public class TennisEvent extends Event {
 
 	@Builder
-	public TennisEvent(String name, String activityType, LocalDateTime date, float price, long venueId,
+	public TennisEvent(String name, LocalDateTime date, float price, long venueId,
 			long creatorUserId) {
-		super(name, activityType, date, price, venueId, creatorUserId);
-		this.activityType = "TENNIS";
+		super(name, date, price, venueId, creatorUserId);
+		this.activityType = ActivityType.TENNIS;
 	}
 }

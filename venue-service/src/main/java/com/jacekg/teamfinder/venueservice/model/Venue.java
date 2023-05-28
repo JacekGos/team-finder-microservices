@@ -1,8 +1,9 @@
-package com.jacekg.teamfinder.eventservice.event.model;
+package com.jacekg.teamfinder.venueservice.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,16 +11,15 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,11 +31,10 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
-@Table(name = "events")
-@DiscriminatorColumn(name = "event_type")
-public abstract class Event {
+@Table(name = "venues")
+@DiscriminatorColumn(name = "venue_type")
+public abstract class Venue {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,31 +44,29 @@ public abstract class Event {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "activity_type", nullable = false)
-	protected ActivityType activityType;
-	
-	@Column(name = "date", nullable = false)
-	private LocalDateTime date;
-	
 	@Column(name = "price", nullable = false)
 	private float price;
 	
-	@Column(name = "venue_id", nullable = false)
-	private long venueId;
-	
-	@Column(name = "creator_user_id", nullable = false)
-	private long creatorUserId;
-	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "event_id")
-	private List<EventUser> usersId = new ArrayList<>();
+	@JoinColumn(name = "venue_id")
+	private List<EventDate> eventDates;
+	
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {CascadeType.DETACH, CascadeType.MERGE,
+					CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinTable(name = "venue_activity_type", 
+			joinColumns = { @JoinColumn(name = "venue_id") },
+			inverseJoinColumns = { @JoinColumn(name = "activity_type_id") })
+	private Set<ActivityType> activities = new HashSet<>();
 
-	public Event(String name, LocalDateTime date, float price, Long venueId, Long creatorUserId) {
+	public Venue(String name, float price, Set<ActivityType> activities) {
 		this.name = name;
-		this.date = date;
 		this.price = price;
-		this.venueId = venueId;
-		this.creatorUserId = creatorUserId;
+		this.activities = activities;
+	}
+
+	@Override
+	public String toString() {
+		return "Venue [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
 }

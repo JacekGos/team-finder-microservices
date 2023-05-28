@@ -1,4 +1,6 @@
-package com.jacekg.teamfinder.eventservice.event.model;
+package com.jacekg.teamfinder.venueservice.model;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,25 +13,24 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "event_user")
+@Table(name = "venue_event_date")
 @NoArgsConstructor
 @ToString
-public class EventUser {
+public class EventDate {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 	
-	@Column(name = "user_id")
-	private Long userId;
+	@Column(name = "venue_id")
+	private Long venueId;
 	
-	@Column(name = "event_id")
-	private Long eventId;
+	@Column(name = "date", nullable = false)
+	private LocalDateTime date;
 
-	
-	public EventUser(Long userId, Long eventId) {
-		this.userId = userId;
-		this.eventId = eventId;
+	public EventDate(Long venueId, LocalDateTime date) {
+		this.venueId = venueId;
+		this.date = date;
 	}
-}
+}	
