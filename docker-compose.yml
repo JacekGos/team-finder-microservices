@@ -1,7 +1,44 @@
 version: '3'
 services:
 
-## Zipkin
+     ## MySQL Docker Compose Config
+  postgres-event:
+    container_name: postgres-event
+    image: postgres
+    environment:
+      POSTGRES_DB: event
+      POSTGRES_USER: jgdev
+      POSTGRES_PASSWORD: testpass
+    expose:
+      - "5431"
+    ports:
+      - "5431:5431"
+    command: -p 5431
+    restart: always
+    
+  postgres-venue:
+    container_name: postgres-venue
+    image: postgres
+    environment:
+      POSTGRES_DB: venue
+      POSTGRES_USER: jgdev
+      POSTGRES_PASSWORD: testpass
+    ports:
+      - "5432:5432"
+    restart: always
+    
+  postgres-user:
+    container_name: postgres-user
+    image: postgres
+    environment:
+      POSTGRES_DB: user
+      POSTGRES_USER: jgdev
+      POSTGRES_PASSWORD: testpass
+    ports:
+      - "5433:5433"
+    command: -p 5433
+    restart: always
+    
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
@@ -24,9 +61,9 @@ services:
     container_name: api-gateway
     pull_policy: always
     ports:
-      - "8181:8080"
+      - "8181:8000"
     expose:
-      - "8181"
+      - "8000"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
@@ -52,6 +89,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
+      - postgres-event
       - discovery-server
       - api-gateway
      
@@ -62,6 +100,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
+      - postgres-user
       - discovery-server
       - api-gateway
       
@@ -72,6 +111,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
+      - postgres-venue
       - discovery-server
       - api-gateway
      

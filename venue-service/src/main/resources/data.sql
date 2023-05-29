@@ -1,0 +1,1 @@
+SELECT 'CREATE DATABASE venue' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'venue')\gexec
