@@ -7,8 +7,8 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: event
-      POSTGRES_USER: jgdev
-      POSTGRES_PASSWORD: testpass
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     expose:
       - "5431"
     ports:
@@ -21,8 +21,8 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: venue
-      POSTGRES_USER: jgdev
-      POSTGRES_PASSWORD: testpass
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     restart: always
@@ -32,8 +32,8 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: user
-      POSTGRES_USER: jgdev
-      POSTGRES_PASSWORD: testpass
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5433:5433"
     command: -p 5433
