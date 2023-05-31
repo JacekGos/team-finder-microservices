@@ -1,4 +1,4 @@
-CREATE TABLE events (
+CREATE TABLE event (
 	id BIGSERIAL PRIMARY KEY,
 	name TEXT NOT NULL,
 	activity_type TEXT NOT NULL,
@@ -14,5 +14,5 @@ CREATE TABLE event_user (
 	user_id BIGINT NOT NULL,
 	CONSTRAINT fk_event_user
 	 FOREIGN KEY(event_id) 
-	   REFERENCES events(id)
+	   REFERENCES event(id)
 );
