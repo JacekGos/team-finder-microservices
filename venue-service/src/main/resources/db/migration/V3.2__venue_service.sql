@@ -1,2 +1,2 @@
-ALTER TABLE venues
+ALTER TABLE venue
 ADD COLUMN venue_type TEXT;

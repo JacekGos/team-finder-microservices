@@ -1,4 +1,4 @@
-CREATE TABLE venues (
+CREATE TABLE venue (
 	id BIGSERIAL PRIMARY KEY,
 	name TEXT NOT NULL,
 	price INT DEFAULT 0
@@ -15,7 +15,7 @@ CREATE TABLE venue_sport_discipline (
 	activity_type_id BIGINT NOT NULL,
 	CONSTRAINT fk_venue
 	 FOREIGN KEY(venue_id) 
-	   REFERENCES venues(id),
+	   REFERENCES venue(id),
 	CONSTRAINT fk_activity_type
 	 FOREIGN KEY(activity_type_id) 
 	   REFERENCES activity_type(id)
@@ -27,5 +27,5 @@ CREATE TABLE venue_event_date (
 	date TIMESTAMP WITH TIME ZONE NOT NULL,
 	CONSTRAINT fk_venue_event_date
 	 FOREIGN KEY(venue_id) 
-	   REFERENCES venues(id)
+	   REFERENCES venue(id)
 );

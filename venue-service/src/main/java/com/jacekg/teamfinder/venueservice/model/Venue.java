@@ -32,7 +32,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "venues")
+@Table(name = "venue")
 @DiscriminatorColumn(name = "venue_type")
 public abstract class Venue {
 	
