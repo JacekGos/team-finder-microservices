@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 import com.jacekg.teamfinder.userservice.dto.UserResponse;
@@ -20,6 +21,8 @@ public class ModelConverter {
 	
 	@PostConstruct
 	public void init() {
+		
+	    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		PropertyMap<User, UserResponse> eventPropertyMap = new PropertyMap<User, UserResponse>() {
 			@Override

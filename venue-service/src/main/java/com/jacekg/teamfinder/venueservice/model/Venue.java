@@ -1,16 +1,17 @@
 package com.jacekg.teamfinder.venueservice.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
@@ -49,7 +49,7 @@ public abstract class Venue {
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "venue_id")
-	private List<EventDate> eventDates;
+	private List<EventDate> eventDates = new ArrayList<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY,
 			cascade = {CascadeType.DETACH, CascadeType.MERGE,
@@ -68,5 +68,22 @@ public abstract class Venue {
 	@Override
 	public String toString() {
 		return "Venue [id=" + id + ", name=" + name + ", price=" + price + "]";
+	}
+	
+	public List<Date> getDates() {
+		return this.eventDates.stream().map(eventDate -> eventDate.getDate()).collect(Collectors.toList());
+	}
+	
+	public List<String> getActivitiesNames() {
+		return this.activities.stream().map(activity -> activity.getName()).collect(Collectors.toList());
+	}
+	
+	public void addActivityType(ActivityType activityType) {
+		this.activities.add(activityType);
+		activityType.addVenue(this);
+	}
+	
+	public void addEventDate(Date date) {
+		this.eventDates.add(new EventDate(this.id, date));
 	}
 }
