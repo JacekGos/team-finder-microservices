@@ -7,12 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
 @NoArgsConstructor
 @ToString
+@Getter
 @Entity
 @Table(name = "user_event")
 public class UserEvent {

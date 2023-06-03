@@ -39,6 +39,15 @@ public class ActivityType {
 
 	@Override
 	public String toString() {
-		return "ActivityType [name=" + name + "]";
+		return name;
+	}
+	
+	public void addVenue(Venue venue) {
+		this.venues.add(venue);
+	}
+	
+	public String getName() {
+		System.out.println("activity name: " + this.name);
+		return this.name;
 	}
 }

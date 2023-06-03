@@ -1,4 +1,4 @@
-package com.jacekg.teamfinder.eventservice.utils;
+package com.jacekg.teamfinder.userservice.utils;
 
 import javax.annotation.PostConstruct;
 
@@ -7,9 +7,8 @@ import org.modelmapper.PropertyMap;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
-import com.jacekg.teamfinder.eventservice.dto.EventResponse;
-import com.jacekg.teamfinder.eventservice.event.model.Event;
-import com.jacekg.teamfinder.eventservice.event.model.FootballEvent;
+import com.jacekg.teamfinder.userservice.dto.UserResponse;
+import com.jacekg.teamfinder.userservice.model.User;
 
 @Component
 public class ModelConverter {
@@ -25,20 +24,22 @@ public class ModelConverter {
 		
 	    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
-		PropertyMap<Event, EventResponse> eventPropertyMap = new PropertyMap<Event, EventResponse>() {
+		PropertyMap<User, UserResponse> eventPropertyMap = new PropertyMap<User, UserResponse>() {
 			@Override
 			protected void configure() {
-				map().setUsersId(source.getUsersId());
+				map().setRoles(source.getRolesNames());
+				map().setEventsId(source.getEventsId());
 			}
 		};
+		
+		
 		
 		modelMapper.addMappings(eventPropertyMap);
 		
 	}
 	
-	public EventResponse convertToResponse(Event event) {
-		
-		EventResponse response = modelMapper.map(event, EventResponse.class);
+	public UserResponse convertToResponse(User user) {
+		UserResponse response = modelMapper.map(user, UserResponse.class);
 		return response;
 	}
 }

@@ -1,6 +1,7 @@
 package com.jacekg.teamfinder.venueservice.model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,13 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
 @Table(name = "venue_event_date")
 @NoArgsConstructor
-@ToString
+@Getter
+//@ToString
 public class EventDate {
 	
 	@Id
@@ -27,9 +30,9 @@ public class EventDate {
 	private Long venueId;
 	
 	@Column(name = "date", nullable = false)
-	private LocalDateTime date;
+	private Date date;
 
-	public EventDate(Long venueId, LocalDateTime date) {
+	public EventDate(Long venueId, Date date) {
 		this.venueId = venueId;
 		this.date = date;
 	}
