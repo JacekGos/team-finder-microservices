@@ -1,37 +1,36 @@
 package com.jacekg.teamfinder.eventservice.event.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.ws.rs.core.Response.Status;
 
 import static org.springframework.http.ResponseEntity.status;
 
 import org.apache.http.HttpStatus;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jacekg.teamfinder.eventservice.event.model.Event;
 import com.jacekg.teamfinder.eventservice.event.service.EventService;
+import com.jacekg.teamfinder.eventservice.utils.ModelConverter;
 
-import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/v1/")
 public class EventRestController {
 	
 	private EventService eventService;
+	private ModelConverter modelConverter;
 		
-	public EventRestController(EventService eventService) {
-		this.eventService = eventService;
-	}
 	
+	public EventRestController(EventService eventService, ModelConverter modelMapper) {
+		this.eventService = eventService;
+		this.modelConverter = modelMapper;
+	}
+
 	@GetMapping("/events")
-	public ResponseEntity<List<Event>> getAllEvents() {
-		
-		return status(HttpStatus.SC_OK).body(eventService.getAllEvents());
+	public ResponseEntity<List<EventResponse>> getAllEvents() {
+		return status(HttpStatus.SC_OK).body(eventService.getAllEvents().stream().map(event -> modelConverter.convertToResponse(event)).collect(Collectors.toList()));
 	}
 }

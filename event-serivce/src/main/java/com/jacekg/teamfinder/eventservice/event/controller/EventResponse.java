@@ -33,5 +33,5 @@ public class EventResponse {
 	
 	private Long creatorUserId;
 	
-	private List<Integer> usersId = new ArrayList<>();
+	private List<Long> usersId = new ArrayList<>();
 }
