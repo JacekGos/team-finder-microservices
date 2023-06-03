@@ -14,10 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -75,7 +72,7 @@ public abstract class Event {
 	}
 	
 	public void addUserId(long userId) {
-		this.users.add(new EventUser(1L, this.id));
+		this.users.add(new EventUser(userId, this.id));
 	}
 	
 	public List<EventUser> getUsers() {

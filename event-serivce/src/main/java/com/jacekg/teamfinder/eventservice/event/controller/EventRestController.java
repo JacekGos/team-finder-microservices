@@ -24,9 +24,9 @@ public class EventRestController {
 	private ModelConverter modelConverter;
 		
 	
-	public EventRestController(EventService eventService, ModelConverter modelMapper) {
+	public EventRestController(EventService eventService, ModelConverter modelConverter) {
 		this.eventService = eventService;
-		this.modelConverter = modelMapper;
+		this.modelConverter = modelConverter;
 	}
 
 	@GetMapping("/events")
