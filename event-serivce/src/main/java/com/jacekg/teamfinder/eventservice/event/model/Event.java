@@ -3,6 +3,7 @@ package com.jacekg.teamfinder.eventservice.event.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,10 +14,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -63,7 +61,7 @@ public abstract class Event {
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "event_id")
-	private List<EventUser> usersId = new ArrayList<>();
+	private List<EventUser> users = new ArrayList<>();
 
 	public Event(String name, LocalDateTime date, float price, Long venueId, Long creatorUserId) {
 		this.name = name;
@@ -71,5 +69,17 @@ public abstract class Event {
 		this.price = price;
 		this.venueId = venueId;
 		this.creatorUserId = creatorUserId;
+	}
+	
+	public void addUserId(long userId) {
+		this.users.add(new EventUser(userId, this.id));
+	}
+	
+	public List<EventUser> getUsers() {
+		return users;
+	}
+	
+	public List<Long> getUsersId() {
+		return this.users.stream().map(eventUser -> eventUser.getUserId()).collect(Collectors.toList());
 	}
 }
