@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Component;
 
-import com.jacekg.teamfinder.eventservice.event.controller.EventResponse;
+import com.jacekg.teamfinder.eventservice.dto.EventResponse;
 import com.jacekg.teamfinder.eventservice.event.model.Event;
 import com.jacekg.teamfinder.eventservice.event.model.FootballEvent;
 
@@ -22,7 +22,7 @@ public class ModelConverter {
 	@PostConstruct
 	public void init() {
 		
-		PropertyMap<FootballEvent, EventResponse> eventPropertyMap = new PropertyMap<FootballEvent, EventResponse>() {
+		PropertyMap<Event, EventResponse> eventPropertyMap = new PropertyMap<Event, EventResponse>() {
 			@Override
 			protected void configure() {
 				map().setUsersId(source.getUsersId());

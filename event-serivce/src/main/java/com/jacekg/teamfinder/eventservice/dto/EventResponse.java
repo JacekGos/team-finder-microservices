@@ -1,4 +1,4 @@
-package com.jacekg.teamfinder.eventservice.event.controller;
+package com.jacekg.teamfinder.eventservice.dto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

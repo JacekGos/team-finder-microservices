@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jacekg.teamfinder.eventservice.dto.EventResponse;
 import com.jacekg.teamfinder.eventservice.event.service.EventService;
 import com.jacekg.teamfinder.eventservice.utils.ModelConverter;
 
