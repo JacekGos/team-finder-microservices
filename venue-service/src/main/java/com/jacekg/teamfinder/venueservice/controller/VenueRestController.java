@@ -35,4 +35,6 @@ public class VenueRestController {
 		
 		return status(HttpStatus.SC_OK).body(venueService.getAllVenues().stream().map(venue -> modelConverter.convertToResponse(venue)).collect(Collectors.toList()));
 	}
+	
+	
 }

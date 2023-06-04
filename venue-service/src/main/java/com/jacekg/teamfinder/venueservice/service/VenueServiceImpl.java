@@ -12,6 +12,8 @@ import javax.transaction.Transactional;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.springframework.stereotype.Service;
 
+import com.jacekg.teamfinder.venueservice.dto.VenueRequest;
+import com.jacekg.teamfinder.venueservice.dto.VenueResponse;
 import com.jacekg.teamfinder.venueservice.geocoding.GeocodingService;
 import com.jacekg.teamfinder.venueservice.model.ActivityType;
 import com.jacekg.teamfinder.venueservice.model.IndoorVenue;
@@ -67,5 +69,10 @@ public class VenueServiceImpl implements VenueService {
 		return venues;
 	}
 	
+	@Transactional
+	@Override
+	public Venue createVenue(VenueRequest venueRequest) {
+		return null;
+	}
 	
 }
