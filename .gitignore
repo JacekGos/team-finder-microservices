@@ -48,4 +48,4 @@ local.properties
 .recommenders
 
 .env
-
+secrets.properties
