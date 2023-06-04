@@ -9,8 +9,10 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.locationtech.jts.geom.GeometryFactory;
 import org.springframework.stereotype.Service;
 
+import com.jacekg.teamfinder.venueservice.geocoding.GeocodingService;
 import com.jacekg.teamfinder.venueservice.model.ActivityType;
 import com.jacekg.teamfinder.venueservice.model.IndoorVenue;
 import com.jacekg.teamfinder.venueservice.model.OutdoorVenue;
@@ -26,6 +28,8 @@ public class VenueServiceImpl implements VenueService {
 	
 	private VenueRepository venueRepository;
 	private ActivityRepository activityRepository;
+	private GeocodingService geocodingService;
+	private GeometryFactory geometryFactory;
 
 	@Transactional
 	@Override
