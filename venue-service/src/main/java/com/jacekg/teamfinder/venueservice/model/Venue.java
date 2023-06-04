@@ -1,6 +1,5 @@
 package com.jacekg.teamfinder.venueservice.model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,6 +20,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.locationtech.jts.geom.Point;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,6 +47,12 @@ public abstract class Venue {
 	
 	@Column(name = "price", nullable = false)
 	private float price;
+	
+	@Column(name = "address", nullable = false)
+	private String address;
+	
+	@Column(columnDefinition = "geometry")
+	private Point location;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "venue_id")
