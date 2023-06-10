@@ -1,4 +1,4 @@
-package com.jacekg.teamfinder.venueservice.utils;
+package com.jacekg.teamfinder.venueservice.utils.converter;
 
 import java.util.List;
 

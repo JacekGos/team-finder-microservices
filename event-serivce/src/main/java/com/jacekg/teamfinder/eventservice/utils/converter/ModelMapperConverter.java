@@ -1,4 +1,4 @@
-package com.jacekg.teamfinder.eventservice.utils;
+package com.jacekg.teamfinder.eventservice.utils.converter;
 
 import javax.annotation.PostConstruct;
 
@@ -12,11 +12,11 @@ import com.jacekg.teamfinder.eventservice.event.model.Event;
 import com.jacekg.teamfinder.eventservice.event.model.FootballEvent;
 
 @Component
-public class ModelConverter {
+public class ModelMapperConverter implements ModelConverter {
 	
 	private ModelMapper modelMapper;
 	
-	public ModelConverter(ModelMapper modelMapper) {
+	public ModelMapperConverter(ModelMapper modelMapper) {
 		this.modelMapper = modelMapper;
 	}
 	
@@ -36,6 +36,7 @@ public class ModelConverter {
 		
 	}
 	
+	@Override
 	public EventResponse convertToResponse(Event event) {
 		
 		EventResponse response = modelMapper.map(event, EventResponse.class);

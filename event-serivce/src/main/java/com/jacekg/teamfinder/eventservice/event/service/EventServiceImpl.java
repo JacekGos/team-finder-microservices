@@ -6,9 +6,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.jacekg.teamfinder.eventservice.dto.EventRequest;
 import com.jacekg.teamfinder.eventservice.event.model.Event;
 import com.jacekg.teamfinder.eventservice.event.model.FootballEvent;
 import com.jacekg.teamfinder.eventservice.event.repository.EventRepository;
+import com.jacekg.teamfinder.eventservice.utils.eventfactory.EventBaseCreator;
 
 import lombok.AllArgsConstructor;
 
@@ -17,29 +19,28 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class EventServiceImpl implements EventService {
 
-	private EventRepository repository;
-
+	private EventRepository eventRepository;
+	private EventBaseCreator eventCreator;
 	
 	@Transactional
 	@Override
 	public List<Event> getAllEvents() {
 		
-//		Event newEvent = FootballEvent.builder()
-//				.name("Testowa gra")
-//				.date(LocalDateTime.now())
-//				.price(20)
-//				.venueId(2)
-//				.creatorUserId(2)
-//				.build();
-//		
-//		repository.save(newEvent);
-//		newEvent.addUserId(2);
-		
-		
-		List<Event> events = repository.findAll();
+		List<Event> events = eventRepository.findAll();
 		events.forEach(event -> System.out.println("event: " +  event.toString()));
 		
 		return events;
 	}
 
+	@Transactional
+	@Override
+	public Event createEvent(EventRequest eventRequest) {
+		
+		Event event = eventCreator.createVenue(eventRequest);
+		eventRepository.save(event);
+		event.addUserId(event.getCreatorUserId());
+		eventRepository.save(event);
+		
+		return event;
+	}
 }
