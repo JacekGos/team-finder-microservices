@@ -36,13 +36,11 @@ public class VenueRestController {
 	
 	@GetMapping("/venues")
 	public ResponseEntity<List<VenueResponse>> getAllEvents() {
-		
 		return status(HttpStatus.SC_OK).body(venueService.getAllVenues().stream().map(venue -> modelConverter.convertToResponse(venue)).collect(Collectors.toList()));
 	}
 	
 	@PostMapping("/venues")
 	public ResponseEntity<VenueResponse> createVenue(@Valid @RequestBody VenueRequest venueRequest) throws IOException {
-		
 		return status(HttpStatus.SC_CREATED).body(modelConverter.convertToResponse(venueService.createVenue(venueRequest)));
 	}
 	

@@ -46,7 +46,6 @@ public class GeocodingServiceImpl implements GeocodingService {
 		OkHttpClient client = new OkHttpClient();
 
 		String encodedAddress = URLEncoder.encode(address, "UTF-8");
-		System.out.println("Addres: " + address + " encoded address: " + encodedAddress);
 
 		Request request = new Request.Builder()
 				.url(GEOCODING_API_URL
@@ -57,7 +56,6 @@ public class GeocodingServiceImpl implements GeocodingService {
 		ResponseBody responseBody = client.newCall(request).execute().body();
 
 		GeocodeResult result = objectMapper.readValue(responseBody.string(), GeocodeResult.class);
-		System.out.println("Geocoding call result: " + result.getResults());
 		
 		if (result.getResults().size() < 1 && !result.getStatus().equals("ok")) {
 //			throw new SaveVenueException("no location found");

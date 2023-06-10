@@ -44,32 +44,6 @@ public class VenueServiceImpl implements VenueService {
 	@Override
 	public List<Venue> getAllVenues() {
 
-//		Set<ActivityType> activityTypes = new HashSet<>();
-//		
-//		Optional<ActivityType> foundActivity = activityRepository.findByName("FOOTBALL");
-//		ActivityType activity = Optional.ofNullable(foundActivity)
-//				.get()
-//				.orElse(null);
-//		
-//		activityTypes.add(activity);
-//		
-//		foundActivity = activityRepository.findByName("VOLLEYBALL");
-//		activity = Optional.ofNullable(foundActivity)
-//				.get()
-//				.orElse(null);
-//		
-//		activityTypes.add(activity);
-//		
-//		
-//		Venue newEvent = IndoorVenue.builder()
-//				.name("Hala sportowa")
-//				.price(250)
-//				.activities(activityTypes)
-//				.build();
-//		
-//		venueRepository.saveAndFlush(newEvent);
-//		newEvent.addEventDate(new Date());
-		
 		List<Venue> venues = venueRepository.findAll();
 		venues.forEach(venue -> System.out.println("found venue: " +  venue.toString()));
 		
@@ -81,17 +55,7 @@ public class VenueServiceImpl implements VenueService {
 	public Venue createVenue(VenueRequest venueRequest) throws IOException {
 		
 		Venue venue = venueCreator.createVenue(venueRequest);
-		
-		Optional<List<ActivityType>> foundActivites 
-			= activityRepository.findByNames(venueRequest.getActivities());
-		
-		List<ActivityType> activites = Optional.ofNullable(foundActivites)
-				.get()
-				.orElse(null);
-		
-		System.out.println("Found activities: " + activites);
-		
-		venue.setActivities(new HashSet<>(activites));
+		venue.setActivities(getActivitiesByNames(venueRequest.getActivities()));
 		venue.setLocation(getLocationByAddress(venueRequest.getAddress()));
 		
 		venueRepository.save(venue);
@@ -110,4 +74,19 @@ public class VenueServiceImpl implements VenueService {
 		return coordinates;
 	}
 	
+	private Set<ActivityType> getActivitiesByNames(List<String> names) {
+		
+		System.out.println("Activities names: " + names);
+		
+		Optional<List<ActivityType>> foundActivites 
+			= activityRepository.findByNames(names);
+	
+		List<ActivityType> activites = Optional.ofNullable(foundActivites)
+			.get()
+			.orElse(null);
+	
+		System.out.println("Found activities: " + activites);
+		
+		return new HashSet<>(activites);
+	}
 }
