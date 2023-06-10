@@ -2,7 +2,6 @@ package com.jacekg.teamfinder.venueservice.controller;
 
 import static org.springframework.http.ResponseEntity.status;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,7 @@ public class VenueRestController {
 	}
 	
 	@PostMapping("/venues")
-	public ResponseEntity<VenueResponse> createVenue(@Valid @RequestBody VenueRequest venueRequest) throws IOException {
+	public ResponseEntity<VenueResponse> createVenue(@Valid @RequestBody VenueRequest venueRequest) throws Exception {
 		return status(HttpStatus.SC_CREATED).body(modelConverter.convertToResponse(venueService.createVenue(venueRequest)));
 	}
 	

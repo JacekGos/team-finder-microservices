@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.jacekg.teamfinder.venueservice.dto.VenueRequest;
 import com.jacekg.teamfinder.venueservice.dto.VenueResponse;
+import com.jacekg.teamfinder.venueservice.exceptions.CreateVenueException;
 import com.jacekg.teamfinder.venueservice.geocoding.GeocodingService;
 import com.jacekg.teamfinder.venueservice.geocoding.model.GeocodeLocation;
 import com.jacekg.teamfinder.venueservice.geocoding.model.GeocodeObject;
@@ -58,34 +59,42 @@ public class VenueServiceImpl implements VenueService {
 		venue.setActivities(getActivitiesByNames(venueRequest.getActivities()));
 		venue.setLocation(getLocationByAddress(venueRequest.getAddress()));
 		
+		venueRepository.findByLocationAndActivitiesIn(venue.getLocation(), venue.getActivities())
+			.ifPresent((foundVenue) -> {
+				throw new CreateVenueException("Venue in address: " + venueRequest.getAddress() + " of activity type: " + venueRequest.getActivities() + " already exists");
+			});
+		
 		venueRepository.save(venue);
 		
 		return venue;
 	}
 	
-	private Point getLocationByAddress(String address) throws IOException {
+	private Point getLocationByAddress(String address)  {
 		
-		GeocodeObject geocodeObject = geocodingService.findLocationByAddress(address);
-		GeocodeLocation location = geocodeObject.getGeometry().getGeocodeLocation();
-		Point coordinates = geometryFactory.createPoint(new Coordinate(location.getLatitude(), location.getLongitude()));
+		Point coordinates = null;
 		
-		System.out.println("Location found: " + coordinates.toString());
+		try {
+			GeocodeObject geocodeObject = geocodingService.findLocationByAddress(address);
+			GeocodeLocation location = geocodeObject.getGeometry().getGeocodeLocation();
+			coordinates = geometryFactory.createPoint(new Coordinate(location.getLatitude(), location.getLongitude()));
+		} catch (IOException ex) {
+			throw new CreateVenueException("No location found for address: " + address);
+		}
 		
 		return coordinates;
 	}
 	
 	private Set<ActivityType> getActivitiesByNames(List<String> names) {
 		
-		System.out.println("Activities names: " + names);
-		
 		Optional<List<ActivityType>> foundActivites 
 			= activityRepository.findByNames(names);
 	
 		List<ActivityType> activites = Optional.ofNullable(foundActivites)
 			.get()
-			.orElse(null);
-	
-		System.out.println("Found activities: " + activites);
+			.orElseThrow();
+		
+		if (activites.isEmpty())
+			throw new CreateVenueException("No activityType for activities: " + names);
 		
 		return new HashSet<>(activites);
 	}

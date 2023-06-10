@@ -1,6 +1,7 @@
 package com.jacekg.teamfinder.venueservice.utils.venuefactory;
 
 import com.jacekg.teamfinder.venueservice.dto.VenueRequest;
+import com.jacekg.teamfinder.venueservice.exceptions.CreateVenueException;
 import com.jacekg.teamfinder.venueservice.model.IndoorVenue;
 import com.jacekg.teamfinder.venueservice.model.OutdoorVenue;
 import com.jacekg.teamfinder.venueservice.model.Venue;
@@ -28,8 +29,7 @@ public class VenueCreator extends VenueBaseCreator {
 				.build();
 			break;
 		default:
-			//TODO throw exception
-			break;
+			throw new CreateVenueException("No type(" + venue.getVenueTypeName() + ")" + " of Venue exists");
 		}
 		
 		return newVenue;

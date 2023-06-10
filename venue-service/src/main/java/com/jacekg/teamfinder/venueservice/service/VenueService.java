@@ -9,5 +9,5 @@ import com.jacekg.teamfinder.venueservice.model.Venue;
 public interface VenueService {
 	
 	public List<Venue> getAllVenues();
-	public Venue createVenue(VenueRequest venueRequest) throws IOException;
+	public Venue createVenue(VenueRequest venueRequest) throws IOException, Exception;
 }
