@@ -25,5 +25,4 @@ public class VenueServiceBaseConfig {
 	public VenueCreator venueBaseCreator() {
 		return new VenueCreator();
 	}
-
 }

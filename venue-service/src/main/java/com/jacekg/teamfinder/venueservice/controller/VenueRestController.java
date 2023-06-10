@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jacekg.teamfinder.venueservice.dto.VenueRequest;
 import com.jacekg.teamfinder.venueservice.dto.VenueResponse;
 import com.jacekg.teamfinder.venueservice.service.VenueService;
-import com.jacekg.teamfinder.venueservice.utils.ModelConverter;
+import com.jacekg.teamfinder.venueservice.utils.converter.ModelConverter;
 
 
 @RestController

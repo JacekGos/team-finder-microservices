@@ -69,6 +69,7 @@ public abstract class Event {
 		this.price = price;
 		this.venueId = venueId;
 		this.creatorUserId = creatorUserId;
+//		addUserId(creatorUserId);
 	}
 	
 	public void addUserId(long userId) {
