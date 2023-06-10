@@ -34,6 +34,8 @@ public class ModelMapperConverter implements ModelConverter {
 			protected void configure() {
 				map().setEventDates(source.getDates());
 				map().setActivities(source.getActivitiesNames());
+				map().setLat(source.getLat());
+				map().setLng(source.getLng());
 			}
 		};
 		

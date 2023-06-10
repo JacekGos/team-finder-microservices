@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class IndoorVenue extends Venue {
 	
 	@Builder
-	public IndoorVenue(String name, float price, Set<ActivityType> activities) {
-		super(name, price, activities);
+	public IndoorVenue(String name, float price, Set<ActivityType> activities, String address) {
+		super(name, price, activities, address);
 	}
 }

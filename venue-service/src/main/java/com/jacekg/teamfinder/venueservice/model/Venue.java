@@ -66,10 +66,11 @@ public abstract class Venue {
 			inverseJoinColumns = { @JoinColumn(name = "activity_type_id") })
 	private Set<ActivityType> activities = new HashSet<>();
 
-	public Venue(String name, float price, Set<ActivityType> activities) {
+	public Venue(String name, float price, Set<ActivityType> activities, String address) {
 		this.name = name;
 		this.price = price;
 		this.activities = activities;
+		this.address = address;
 	}
 
 	@Override
@@ -92,5 +93,13 @@ public abstract class Venue {
 	
 	public void addEventDate(Date date) {
 		this.eventDates.add(new EventDate(this.id, date));
+	}
+	
+	public String getLng() {
+		return String.valueOf(this.location.getX());
+	}
+	
+	public String getLat() {
+		return String.valueOf(this.location.getY());
 	}
 }

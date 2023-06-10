@@ -24,6 +24,12 @@ private Long id;
 	
 	private float price;
 	
+	private String address;
+	
+	private String lat;
+	
+	private String lng;
+	
 	private List<Date> eventDates;
 	
 	private List<String> activities;

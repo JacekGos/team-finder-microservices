@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class OutdoorVenue extends Venue {
 	
 	@Builder
-	public OutdoorVenue(String name, float price, Set<ActivityType> activities) {
-		super(name, price, activities);
+	public OutdoorVenue(String name, float price, Set<ActivityType> activities, String address) {
+		super(name, price, activities, address);
 	}
 }

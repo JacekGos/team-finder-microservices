@@ -5,6 +5,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.jacekg.teamfinder.venueservice.utils.venuefactory.VenueBaseCreator;
+import com.jacekg.teamfinder.venueservice.utils.venuefactory.VenueCreator;
+
 @Configuration
 public class VenueServiceBaseConfig {
 	
@@ -16,6 +19,11 @@ public class VenueServiceBaseConfig {
 	@Bean
 	public GeometryFactory geometryFactory() {
 		return new GeometryFactory();
+	}
+	
+	@Bean
+	public VenueCreator venueBaseCreator() {
+		return new VenueCreator();
 	}
 
 }
