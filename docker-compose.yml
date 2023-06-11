@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-     ## MySQL Docker Compose Config
+     ## Postgres Docker Compose Config
   postgres-event:
     container_name: postgres-event
     image: postgres
@@ -18,7 +18,7 @@ services:
     
   postgres-venue:
     container_name: postgres-venue
-    image: postgres
+    image: postgis/postgis
     environment:
       POSTGRES_DB: venue
       POSTGRES_USER: ${POSTGRES_USER}
