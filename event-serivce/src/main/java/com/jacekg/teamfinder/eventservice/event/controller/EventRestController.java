@@ -7,7 +7,8 @@ import javax.validation.Valid;
 
 import static org.springframework.http.ResponseEntity.status;
 
-import org.apache.http.HttpStatus;
+//import org.apache.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,11 +37,11 @@ public class EventRestController {
 
 	@GetMapping("/events")
 	public ResponseEntity<List<EventResponse>> getAllEvents() {
-		return status(HttpStatus.SC_OK).body(eventService.getAllEvents().stream().map(event -> modelConverter.convertToResponse(event)).collect(Collectors.toList()));
+		return status(HttpStatus.OK).body(eventService.getAllEvents().stream().map(event -> modelConverter.convertToResponse(event)).collect(Collectors.toList()));
 	}
 	
 	@PostMapping("/events")
 	public ResponseEntity<EventResponse> createVenue(@Valid @RequestBody EventRequest eventRequest) throws Exception {
-		return status(HttpStatus.SC_CREATED).body(modelConverter.convertToResponse(eventService.createEvent(eventRequest)));
+		return status(HttpStatus.OK).body(modelConverter.convertToResponse(eventService.createEvent(eventRequest)));
 	}
 }
