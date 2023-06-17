@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jacekg.teamfinder.venueservice.exceptions.CreateVenueException;
 import com.jacekg.teamfinder.venueservice.geocoding.model.GeocodeObject;
 import com.jacekg.teamfinder.venueservice.geocoding.model.GeocodeResult;
 
@@ -58,8 +59,7 @@ public class GeocodingServiceImpl implements GeocodingService {
 		GeocodeResult result = objectMapper.readValue(responseBody.string(), GeocodeResult.class);
 		
 		if (result.getResults().size() < 1 && !result.getStatus().equals("ok")) {
-//			throw new SaveVenueException("no location found");
-			throw new IOException("no location found");
+			throw new CreateVenueException("No location found");
 		} else {
 			return result.getResults().get(0);
 		}
