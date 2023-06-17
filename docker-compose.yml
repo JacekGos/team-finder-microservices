@@ -72,11 +72,10 @@ services:
       - discovery-server
       
   event-core-service:
-    container_name: event-core-service
     image: jacekg11/event-core-service:latest
     pull_policy: always
     ports:
-     - "8080:8080"
+     - "8085-8090:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
