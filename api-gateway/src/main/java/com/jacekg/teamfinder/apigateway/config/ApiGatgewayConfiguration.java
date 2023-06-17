@@ -15,12 +15,25 @@ public class ApiGatgewayConfiguration {
 	
 	@Bean
 	public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
-		Function<PredicateSpec, Buildable<Route>> routeFunction
-			= p -> p.path("/get")
-				.filters(f -> f.addRequestHeader("TestHeader", "Value"))
-				.uri("http://httpbin.org:80");
+		
+		Function<PredicateSpec, Buildable<Route>> eventCoreRouteFunction
+			= p -> p.path("/event-core/**")
+					.uri("lb://event-core-service");
+			Function<PredicateSpec, Buildable<Route>> eventRouteFunction
+				= p -> p.path("/event/**")
+					.uri("lb://event-service");
+			Function<PredicateSpec, Buildable<Route>> userRouteFunction
+				= p -> p.path("/user/**")
+					.uri("lb://user-service");
+			Function<PredicateSpec, Buildable<Route>> venueRouteFunction
+				= p -> p.path("/venue/**")
+					.uri("lb://venue-service");
+			
 		return builder.routes()
-				.route(routeFunction)
+				.route(eventCoreRouteFunction)
+				.route(eventRouteFunction)
+				.route(userRouteFunction)
+				.route(venueRouteFunction)
 				.build();
 	}
 

@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import static org.springframework.http.ResponseEntity.status;
 
-//import org.apache.http.HttpStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,7 @@ import com.jacekg.teamfinder.eventservice.utils.converter.ModelMapperConverter;
 
 
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/event/v1/")
 public class EventRestController {
 	
 	private EventService eventService;

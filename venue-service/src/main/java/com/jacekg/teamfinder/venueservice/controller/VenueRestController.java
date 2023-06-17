@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import org.apache.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +22,7 @@ import com.jacekg.teamfinder.venueservice.utils.converter.ModelConverter;
 
 
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/venue/v1/")
 public class VenueRestController {
 	
 	VenueService venueService;
@@ -35,12 +35,12 @@ public class VenueRestController {
 	
 	@GetMapping("/venues")
 	public ResponseEntity<List<VenueResponse>> getAllEvents() {
-		return status(HttpStatus.SC_OK).body(venueService.getAllVenues().stream().map(venue -> modelConverter.convertToResponse(venue)).collect(Collectors.toList()));
+		return status(HttpStatus.OK).body(venueService.getAllVenues().stream().map(venue -> modelConverter.convertToResponse(venue)).collect(Collectors.toList()));
 	}
 	
 	@PostMapping("/venues")
 	public ResponseEntity<VenueResponse> createVenue(@Valid @RequestBody VenueRequest venueRequest) throws Exception {
-		return status(HttpStatus.SC_CREATED).body(modelConverter.convertToResponse(venueService.createVenue(venueRequest)));
+		return status(HttpStatus.CREATED).body(modelConverter.convertToResponse(venueService.createVenue(venueRequest)));
 	}
 	
 }
