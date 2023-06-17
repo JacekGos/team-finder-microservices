@@ -5,16 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Event {
 	
 	private int id;
 	private String name;
-	private String port;
-	
-	public Event(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
 }

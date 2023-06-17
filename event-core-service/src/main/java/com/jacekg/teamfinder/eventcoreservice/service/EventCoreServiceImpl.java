@@ -14,8 +14,6 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class EventCoreServiceImpl implements EventCoreService {
-
-	private Environment environment;
 	
 	@Override
 	public List<Event> getAllEvents() {
@@ -23,9 +21,6 @@ public class EventCoreServiceImpl implements EventCoreService {
 		List<Event> events = new ArrayList<>();
 		Event event1 = new Event(1, "Event 1");
 		Event event2 = new Event(2, "Event 2");
-		event1.setPort(environment.getProperty("local.server.port"));
-		event2.setPort(environment.getProperty("local.server.port"));
-		
 		events.add(event1);
 		events.add(event2);
 		
