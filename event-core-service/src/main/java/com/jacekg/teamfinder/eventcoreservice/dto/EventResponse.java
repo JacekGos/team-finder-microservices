@@ -19,6 +19,6 @@ import lombok.ToString;
 public class EventResponse {
 	
 	private long id;
-	
 	private String name;
+	private String port;
 }

@@ -18,16 +18,16 @@ public class ApiGatgewayConfiguration {
 		
 		Function<PredicateSpec, Buildable<Route>> eventCoreRouteFunction
 			= p -> p.path("/event-core/**")
-					.uri("lb://event-core-service");
-			Function<PredicateSpec, Buildable<Route>> eventRouteFunction
-				= p -> p.path("/event/**")
-					.uri("lb://event-service");
-			Function<PredicateSpec, Buildable<Route>> userRouteFunction
-				= p -> p.path("/user/**")
-					.uri("lb://user-service");
-			Function<PredicateSpec, Buildable<Route>> venueRouteFunction
-				= p -> p.path("/venue/**")
-					.uri("lb://venue-service");
+				.uri("lb://event-core-service");
+		Function<PredicateSpec, Buildable<Route>> eventRouteFunction
+			= p -> p.path("/event/**")
+				.uri("lb://event-service");
+		Function<PredicateSpec, Buildable<Route>> userRouteFunction
+			= p -> p.path("/user/**")
+				.uri("lb://user-service");
+		Function<PredicateSpec, Buildable<Route>> venueRouteFunction
+			= p -> p.path("/venue/**")
+				.uri("lb://venue-service");
 			
 		return builder.routes()
 				.route(eventCoreRouteFunction)
