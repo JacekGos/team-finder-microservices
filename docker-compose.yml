@@ -1,7 +1,6 @@
 version: '3'
 services:
 
-     ## Postgres Docker Compose Config
   postgres-event:
     container_name: postgres-event
     image: postgres
@@ -84,7 +83,6 @@ services:
 
       
   event-service:
-#     container_name: event-service
     image: jacekg11/event-service:latest
     pull_policy: always
     ports:
@@ -97,7 +95,6 @@ services:
       - api-gateway
      
   user-service:
-#    container_name: user-service
     image: jacekg11/user-service:latest
     pull_policy: always
     ports:
@@ -110,7 +107,6 @@ services:
       - api-gateway
       
   venue-service:
-#    container_name: venue-service
     image: jacekg11/venue-service:latest
     pull_policy: always
     ports:
