@@ -75,7 +75,7 @@ services:
     image: jacekg11/event-core-service:latest
     pull_policy: always
     ports:
-     - "8085-8090:8080"
+     - "8100-8199:8100"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
@@ -84,11 +84,11 @@ services:
 
       
   event-service:
-    container_name: event-service
+#     container_name: event-service
     image: jacekg11/event-service:latest
     pull_policy: always
     ports:
-      - "8081:8081"
+      - "8200-8299:8200"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
@@ -97,11 +97,11 @@ services:
       - api-gateway
      
   user-service:
-    container_name: user-service
+#    container_name: user-service
     image: jacekg11/user-service:latest
     pull_policy: always
     ports:
-      - "8082:8082"
+      - "8300-8399:8300"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
@@ -110,11 +110,11 @@ services:
       - api-gateway
       
   venue-service:
-    container_name: venue-service
+#    container_name: venue-service
     image: jacekg11/venue-service:latest
     pull_policy: always
     ports:
-     - "8083:8083"
+     - "8400-8499:8400"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
