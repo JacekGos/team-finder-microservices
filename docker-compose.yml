@@ -50,6 +50,8 @@ services:
   keycloak-mysql:
     container_name: keycloak-mysql
     image: mysql:5.7
+    volumes:
+      - mysql_keycloak:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keycloak
@@ -71,7 +73,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./realms/:/opt/keycloak/data/import/
+      - realms_keycloak:/opt/keycloak/data/import/
     depends_on:
       - keycloak-mysql
       
@@ -101,6 +103,7 @@ services:
     depends_on:
       - zipkin
       - discovery-server
+      - keycloak
       
   event-core-service:
     image: jacekg11/event-core-service:latest
@@ -150,5 +153,9 @@ services:
       - discovery-server
       - api-gateway
      
-     
+volumes:
+   mysql_keycloak:
+     external: true
+   realms_keycloak:
+     external: true
      
