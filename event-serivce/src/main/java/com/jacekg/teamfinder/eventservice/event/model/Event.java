@@ -59,6 +59,7 @@ public abstract class Event {
 	@Column(name = "creator_user_id", nullable = false)
 	private long creatorUserId;
 	
+	@Getter
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "event_id")
 	private List<EventUser> users = new ArrayList<>();
@@ -75,12 +76,8 @@ public abstract class Event {
 	public void addUserId(long userId) {
 		this.users.add(new EventUser(userId, this.id));
 	}
-	
-	public List<EventUser> getUsers() {
-		return users;
-	}
-	
+
 	public List<Long> getUsersId() {
-		return this.users.stream().map(eventUser -> eventUser.getUserId()).collect(Collectors.toList());
+		return this.users.stream().map(EventUser::getUserId).collect(Collectors.toList());
 	}
 }

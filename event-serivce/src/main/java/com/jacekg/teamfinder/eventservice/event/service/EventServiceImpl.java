@@ -27,7 +27,7 @@ public class EventServiceImpl implements EventService {
 	public List<Event> getAllEvents() {
 		
 		List<Event> events = eventRepository.findAll();
-		events.forEach(event -> System.out.println("event: " +  event.toString()));
+		events.forEach(event -> System.out.println("found event: " +  event.toString()));
 		
 		return events;
 	}
