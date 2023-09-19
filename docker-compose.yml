@@ -5,6 +5,8 @@ services:
   postgres-event:
     container_name: postgres-event
     image: postgres
+    volumes:
+     - postgres_event:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: event
       POSTGRES_USER: ${POSTGRES_USER}
@@ -19,6 +21,8 @@ services:
   postgres-venue:
     container_name: postgres-venue
     image: postgis/postgis
+    volumes:
+     - postgres_venue:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: venue
       POSTGRES_USER: ${POSTGRES_USER}
@@ -30,6 +34,8 @@ services:
   postgres-user:
     container_name: postgres-user
     image: postgres
+    volumes:
+     - postgres_user:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: user
       POSTGRES_USER: ${POSTGRES_USER}
@@ -157,5 +163,11 @@ volumes:
    mysql_keycloak:
      external: true
    realms_keycloak:
+     external: true
+   postgres_event:
+     external: true
+   postgres_user:
+     external: true
+   postgres_venue:
      external: true
      
