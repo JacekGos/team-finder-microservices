@@ -4,7 +4,7 @@
 
 This is the backend part of Team-Finder based on microservices architecture. </br>
 User Interface created by using React and Bootstrap:
-https://github.com/JacekGos/team-finder-ui
+https://github.com/JacekGos/team-finder-ui-v2
 
 A web application, the purpose of which is to search for sports events in the area<br>
 and to create teams in various sports disciplines.<br>
